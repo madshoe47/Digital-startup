@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Tilføj testpersoner</router-link>
+      <router-link to="/about">Se testpersoner</router-link>
     </div>
     <router-view />
   </div>
@@ -18,15 +18,23 @@
 }
 
 #nav {
-  padding: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background: #000;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
+  margin-right: 20px;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: red;
 }
 </style>

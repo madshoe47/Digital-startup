@@ -1,9 +1,10 @@
 <template>
   <div class="grid-container">
     <article v-for="post in posts" :key="post.id">
-      <img :src="post.image" alt="" />
       <h3>Navn: {{ post.name }}</h3>
-      <h4>Alder: {{ post.Alder }} år</h4>
+      <h4>Email: {{ post.email }}</h4>
+      <h4>Mobil: {{ post.contact }}</h4>
+      <img :src="post.image" alt="" />
     </article>
   </div>
 </template>
