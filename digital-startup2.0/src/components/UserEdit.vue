@@ -1,8 +1,8 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-5">
-      <h3 class="text-center">Add User</h3>
-      <form @submit.prevent="onFormSubmit">
+      <h3 class="text-center">Update User</h3>
+      <form @submit.prevent="onUpdateForm">
         <div class="form-group">
           <label>Name</label>
           <input
@@ -42,7 +42,7 @@
 </template>
 
 <script>
- import { postRef } from '../firebaseDb';
+    import { postRef } from '../firebase-Db';
 
     export default {
         data() {
@@ -51,14 +51,21 @@
                 }
             }
         },
+        created() {
+            let dbRef = postRef.collection('users').doc(this.$route.params.id);
+            dbRef.get().then((doc) => {
+                this.user = doc.data();
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
         methods: {
-            onFormSubmit(event) {
+            onUpdateForm(event) {
                 event.preventDefault()
-                db.collection('users').add(this.user).then(() => {
-                    alert("User successfully created!");
-                    this.user.name = ''
-                    this.user.email = ''
-                    this.user.phone = ''
+                postRef.collection('users').doc(this.$route.params.id)
+                .update(this.user).then(() => {
+                    console.log("User successfully updated!");
+                    this.$router.push('/list')
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -66,6 +73,3 @@
         }
     }
 </script>
-
-<style>
-</style>
